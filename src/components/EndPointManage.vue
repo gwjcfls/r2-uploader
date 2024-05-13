@@ -4,6 +4,7 @@
       <summary class='font-bold italic'>
         Endpoints
       </summary>
+      <!--
       <article>
         <form action="javascript:" class="mb-0">
           <div class="pb-2 text-xs opacity-80">
@@ -32,6 +33,8 @@
           </div>
         </form>
       </article>
+      -->
+
       <article>
         <form class="mb-0" action="javascript:" @submit="saveApiInfo">
           <div class="pb-2 text-xs opacity-80">
@@ -39,20 +42,20 @@
           </div>
           <div>
             <label for="" class="text-sm">Workers Endpoint</label>
-            <input type="text" placeholder="https://..." v-model="newEndpoint" class="text-xs" required>
+            <input type="text" placeholder="https://..." v-model="newEndpoint" class="text-xs"  required>
           </div>
           <div>
             <label for="api_key" class="text-sm">Workers Endpoint API Key</label>
             <input type="password" placeholder="treat it like your browser history" v-model="newApiKey" required
                    id="api_key" class="text-xs">
           </div>
-          <div>
+          <div v-show="false">
             <label for="custom_domain" class="text-sm">Custom Domain (Optional)</label>
             <input type="text" placeholder="no need for the https:// prefix" v-model="newCustomDomain"
                    id="custom_domain"
                    style="margin-bottom: .5rem" class="text-xs">
             <div class="opacity-70 text-xs leading-4 mb-8">
-              Use your own domain name to access the files instead of <code
+              Use your own domain name to access the files instead of <code>
               class="text-black dark:text-white">&lt;bucket&gt;.&lt;user&gt;.workers.dev</code>.
             </div>
           </div>
@@ -64,15 +67,18 @@
           </div>
         </form>
       </article>
-      <article>
+      <!--<article> 
         <sync-endpoints></sync-endpoints>
-      </article>
+      </article>-->
+      
     </details>
 
   </div>
 </template>
 
+
 <script setup>
+
 import {onMounted, ref, watch} from 'vue'
 import {useStatusStore} from '../store/status'
 import SyncEndpoints from './syncEndpoints.vue'
@@ -90,7 +96,7 @@ let endPointList = ref([])
 let panelOpen = ref('1')
 let customDomain = ref('')
 
-let newEndpoint = ref('')
+let newEndpoint = ref('https://drive.gwjcfls.top')
 let newApiKey = ref('')
 let newCustomDomain = ref('')
 
@@ -286,4 +292,7 @@ onMounted(() => {
 
   restorePanelOpenStatus()
 })
+
+
+
 </script>

@@ -1,23 +1,23 @@
 <template>
-  <div>
+  <div v-show="isVisible">
     <div class="pb-2 text-xs opacity-80">
       Sync Endpoints
     </div>
     <div aria-busy="true" v-show="findingUser">
 
     </div>
-    <div class="text-sm" v-show="!isLogin && !findingUser">
+    <div class="text-sm" v-show="isVisible">
       To sync your endpoints across devices, you can login with your GitHub account. All the information will be
       AES encrypted locally and then stored in our database.
     </div>
-    <div class="mt-6" v-show="!isLogin && !findingUser">
+    <div class="mt-6" v-show="isVisible">
       <button class="text-sm inline-block w-auto mb-0" @click="goToLogin">Login With <img
         class="h-[1.3rem] relative top-[-.1rem]"
         :src="isDark ? 'https://r2-cf-api.jw1.dev/GitHub_Logo.png' : 'https://r2-cf-api.jw1.dev/GitHub_Logo_White.png'"
         alt="GitHub"></button>
     </div>
 
-    <div v-show="isLogin">
+    <div >
       <div class="text-sm mb-4 mt-4">
         Welcome, {{ userInfo.login }}!
       </div>
@@ -48,7 +48,7 @@
 
           </form>
         </div>
-        <div class="text-xs">
+        <div class="text-xs" >
           <button class="inline-block w-auto text-xs mb-2" :disabled="!hasEncryptionPassword || syncingMyData"
                   @click="syncMyData" :aria-busy="syncingMyData">🔼 Push
           </button>
@@ -87,6 +87,8 @@ let showPassword = ref(false)
 let getWindowTheme = () => {
   isDark.value = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 }
+
+
 
 let logout = function () {
   let c = confirm('Are you sure to log out?')
