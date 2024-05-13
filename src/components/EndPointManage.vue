@@ -4,7 +4,7 @@
       <summary class='font-bold italic'>
         Endpoints
       </summary>
-      <!--
+
       <article>
         <form action="javascript:" class="mb-0">
           <div class="pb-2 text-xs opacity-80">
@@ -33,7 +33,6 @@
           </div>
         </form>
       </article>
-      -->
 
       <article>
         <form class="mb-0" action="javascript:" @submit="saveApiInfo">
